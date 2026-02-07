@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Winner Picker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow"></p>
+          <h1>Random Winner Picker</h1>
+          <p class="subhead">
+            Pick a fair winner daily, weekly, monthly, or yearly. No repeats until
+            everyone has won.
+          </p>
+        </div>
+        <div class="status-card" id="statusCard">
+          <p class="status-label">Current period</p>
+          <p class="status-value" id="periodLabel">Monthly · 2026-02</p>
+          <p class="status-meta" id="statusMeta">0 winners this cycle</p>
+        </div>
+      </header>
+
+      <section class="controls">
+        <div class="control">
+          <label for="frequency">Frequency</label>
+          <select id="frequency">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly" selected>Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="newName">Add person</label>
+          <div class="inline">
+            <input id="newName" type="text" placeholder="Type a name" />
+            <button class="btn" id="addPerson">Add</button>
+          </div>
+        </div>
+        <div class="control">
+          <label for="bulkNames">Bulk add</label>
+          <textarea
+            id="bulkNames"
+            rows="3"
+            placeholder="Paste one name per line"
+          ></textarea>
+          <button class="btn ghost" id="bulkAdd">Add list</button>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <div class="card-head">
+            <h2>Participants</h2>
+            <div class="card-actions">
+              <button class="btn ghost" id="shuffle">Shuffle pool</button>
+              <button class="btn danger" id="resetCycle">Reset cycle</button>
+            </div>
+          </div>
+          <ul class="list" id="participantsList"></ul>
+          <p class="empty" id="participantsEmpty">No participants yet.</p>
+        </div>
+
+        <div class="card highlight">
+          <div class="card-head">
+            <h2>Winner</h2>
+            <button class="btn" id="drawWinner">Draw winner</button>
+          </div>
+          <div class="winner">
+            <p class="winner-label">Latest winner</p>
+            <h3 id="winnerName">—</h3>
+            <p class="winner-meta" id="winnerMeta">Ready to draw.</p>
+          </div>
+          <div class="history">
+            <h3>Recent winners</h3>
+            <ul class="history-list" id="historyList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card notes">
+        <h2>How it works</h2>
+        <p>
+          Each frequency keeps its own fair cycle. Everyone wins once before the
+          cycle resets. You can reset manually or let the app reset when the pool
+          is empty.
+        </p>
+      </section>
+    </main>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>
